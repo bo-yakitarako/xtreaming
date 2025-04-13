@@ -9,14 +9,17 @@ export const AppBar: React.FC = () => {
   const toggleDark = (e: unknown, checked: boolean) => setDark(checked);
 
   return (
-    <MuiAppBar color="inherit" position="sticky">
-      <Toolbar>
-        <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-          <Box component="img" src="/logo.png" alt="logo" sx={{ width: 32 }} />
-        </Box>
-        <DartThemeSwitch checked={dark} onChange={toggleDark} />
-      </Toolbar>
-    </MuiAppBar>
+    <>
+      <MuiAppBar color="inherit">
+        <Toolbar>
+          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+            <Box component="img" src="/logo.png" alt="logo" sx={{ width: 32 }} />
+          </Box>
+          <DartThemeSwitch checked={dark} onChange={toggleDark} />
+        </Toolbar>
+      </MuiAppBar>
+      <Toolbar />
+    </>
   );
 };
 
