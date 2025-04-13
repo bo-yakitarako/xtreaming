@@ -9,8 +9,7 @@ import { startTransition, StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
+import { DarkModeProvider } from './.client/DarkModeContext';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -19,21 +18,14 @@ import '@fontsource/roboto/700.css';
 
 const cache = createCache({ key: 'css' });
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-
 startTransition(() => {
   hydrateRoot(
     document,
     <StrictMode>
       <CacheProvider value={cache}>
-        <ThemeProvider theme={darkTheme}>
-          <CssBaseline />
+        <DarkModeProvider>
           <RemixBrowser />
-        </ThemeProvider>
+        </DarkModeProvider>
       </CacheProvider>
     </StrictMode>,
   );

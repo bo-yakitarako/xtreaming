@@ -1,5 +1,6 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
-import { ReactElement, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { AppBar } from './.client/components/AppBar';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -20,11 +21,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const [outlet, setoutlet] = useState<ReactElement | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setoutlet(<Outlet />);
+    setIsClient(true);
   }, []);
 
-  return outlet;
+  if (!isClient) {
+    return null;
+  }
+
+  return (
+    <>
+      <AppBar />
+      <Outlet />
+    </>
+  );
 }
