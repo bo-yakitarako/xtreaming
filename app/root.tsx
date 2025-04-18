@@ -1,6 +1,7 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { AppBar } from './.client/components/AppBar';
+import { Box } from '@mui/material';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,7 +12,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100dvh' }}>
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -34,7 +35,18 @@ export default function App() {
   return (
     <>
       <AppBar />
-      <Outlet />
+      <Box
+        component="main"
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Outlet />
+      </Box>
     </>
   );
 }
