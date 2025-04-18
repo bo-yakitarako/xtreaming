@@ -21,4 +21,7 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  server: {
+    allowedHosts: ['dev.bo-yakitarako.dev', 'x.bo-yakitarako.dev'],
+  },
 });
